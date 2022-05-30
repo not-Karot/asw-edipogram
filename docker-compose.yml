@@ -27,3 +27,13 @@ services:
       - POSTGRES_DB=connessioniServiceDB
     ports:
       - "5456:5432"
+
+  enigmiseguitiservicedb:
+    image: postgres:latest
+    container_name: enigmiSeguitiServiceDB
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=enigmiSeguitiServiceDB
+    ports:
+      - "5457:5432"
