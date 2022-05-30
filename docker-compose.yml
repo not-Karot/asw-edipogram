@@ -17,3 +17,13 @@ services:
       - POSTGRES_DB=enigmiServiceDB
     ports:
       - "5455:5432"
+
+  connessioniservicedb:
+    image: postgres:latest
+    container_name: connessioniServiceDB
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=connessioniServiceDB
+    ports:
+      - "5456:5432"
