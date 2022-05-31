@@ -17,7 +17,18 @@ spring:
         # consul deve restituire solo servizi che passano l'health check (default=false) 
         queryPassing: true 
     loadbalancer: 
-      ribbon.enabled: false 
+      ribbon.enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://enigmiservicedb:3306/enigmiServiceDB
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
 
 server: 
   port: ${PORT:${SERVER_PORT:0}}
