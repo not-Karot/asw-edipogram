@@ -52,6 +52,17 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni/{utente}`
   * espone il servizio *enigmi-seguiti* sul path `/enigmi-seguiti` - ad esempio, `GET /enigmi-seguiti/enigmiseguiti/{utente}`
 
+## Esecuzione con Docker
+
+Per eseguire questo progetto con Docker:
+
+* avviare Docker sulla propria macchina
+
+* eseguire lo script `build-java-project.sh` per buildare il progetto
+
+* eseguire lo script `run-docker-compose.sh` per eseguire l'applicazione su Docker
+
+* per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh`
 
 ## Esecuzione 
 
