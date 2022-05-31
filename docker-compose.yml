@@ -62,3 +62,12 @@ services:
     depends_on:
       - consul
       - enigmiservicedb
+
+  connessioni:
+    image: connessioni-service
+    container_name: connessioniService
+    build: ./connessioni
+    restart: unless-stopped
+    depends_on:
+      - consul
+      - connessioniservicedb
