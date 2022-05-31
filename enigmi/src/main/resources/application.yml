@@ -5,7 +5,7 @@ spring:
     name: enigmi
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -25,7 +25,7 @@ spring:
     generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://enigmiservicedb:3306/enigmiServiceDB
+    url: jdbc:postgresql://enigmiservicedb:5432/enigmiServiceDB
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver

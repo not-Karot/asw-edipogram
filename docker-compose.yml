@@ -53,3 +53,12 @@ services:
       - "8080:8080"
     depends_on:
       - "consul"
+
+  enigmi:
+    image: enigmi-service
+    container_name: enigmiService
+    build: ./enigmi
+    restart: unless-stopped
+    depends_on:
+      - consul
+      - enigmiservicedb
