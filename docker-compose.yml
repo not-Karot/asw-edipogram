@@ -71,3 +71,12 @@ services:
     depends_on:
       - consul
       - connessioniservicedb
+
+  enigmiseguiti:
+    image: enigmi-seguiti-service
+    container_name: enigmiSeguitiService
+    build: ./enigmi-seguiti
+    restart: unless-stopped
+    depends_on:
+      - consul
+      - enigmiseguitiservicedb
