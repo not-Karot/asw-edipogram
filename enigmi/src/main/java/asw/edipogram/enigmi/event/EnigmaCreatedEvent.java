@@ -17,3 +17,5 @@ public class EnigmaCreatedEvent implements DomainEvent {
     private String[] soluzione;
 
 }
+
+

@@ -17,3 +17,5 @@ echo
 echo "# trova la soluzione l'enigma $ENIGMA" 
 echo $(curl -s localhost:8080/enigmi/enigmi/${ENIGMA}/soluzione)
 echo 
+
+
