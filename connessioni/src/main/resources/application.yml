@@ -1,6 +1,6 @@
 # application.yml
 --- 
-spring: 
+spring:
   application: 
     name: connessioni
   cloud:
@@ -29,6 +29,15 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
+  main:
+    # Kafka
+    web-application-type: none
+  kafka:
+    # non so se va bene
+    bootstrap-servers: ${DOCKER_HOST_IP:10.11.1.121}:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server: 
   port: ${PORT:${SERVER_PORT:0}}
@@ -38,3 +47,9 @@ server:
 #spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
+
+# kafka
+asw:
+  edipogram:
+    channel:
+      out: asw.edipogram.connessioni
