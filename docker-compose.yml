@@ -103,7 +103,8 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
       #      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://10.11.121:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CREATE_TOPICS= "Topic1:1:1,Topic2:1:1"
+      #- KAFKA_CREATE_TOPICS="topic1:1:1:compact"
+      #- KAFKA_CREATE_TOPICS="Topic1:1:1,Topic2:1:1:compact"
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-
