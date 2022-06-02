@@ -48,7 +48,7 @@ server:
 # disable OSIV
 spring.jpa.open-in-view: false
 
-# kafka
+# per kafka
 asw:
   edipogram:
     channel:

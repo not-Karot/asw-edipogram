@@ -82,7 +82,7 @@ services:
       - enigmiseguitiservicedb
 
   zookeeper:
-    image: bitnami/zookeeper:lastest
+    image: 'bitnami/zookeeper:latest'
     ports:
       - "2181:2181"
 

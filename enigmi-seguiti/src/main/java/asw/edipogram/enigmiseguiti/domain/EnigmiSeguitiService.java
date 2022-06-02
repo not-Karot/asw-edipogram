@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*; 
-import java.util.stream.*; 
+import java.util.stream.*;
+
+import asw.edipogram.enigmiseguiti.event.*;
 
 @Service 
 public class EnigmiSeguitiService {
@@ -31,4 +33,9 @@ public class EnigmiSeguitiService {
 		return enigmiSeguiti; 
 	}
 
+	public void onMessage(DomainEvent event) {
+		//ricevi l'evento e fai cose
+		System.out.print("Ho ricevuto il messaggio ed eseguo il metodo onMessage\n");
+		System.out.print(event.toString()+"\n");
+	}
 }
