@@ -11,11 +11,13 @@ public class ConnessioniDomainEventPublisherImpl implements ConnessioniDomainEve
     @Autowired
     private KafkaTemplate<String, DomainEvent> template;
 
-    @Value("${asw.edipogram.channel.out")
+    @Value("${asw.edipogram.channel.out}")
     private String channel;
 
     @Override
     public void publish(DomainEvent event) {
+
         template.send(channel, event);
+
     }
 }

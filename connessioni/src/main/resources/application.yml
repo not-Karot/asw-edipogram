@@ -20,7 +20,7 @@ spring:
       ribbon.enabled: false
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -29,12 +29,12 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
-  main:
+  # main:
     # Kafka
-    web-application-type: none
+    # web-application-type: none
   kafka:
     # non so se va bene
-    bootstrap-servers: ${DOCKER_HOST_IP:10.11.1.121}:9092
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

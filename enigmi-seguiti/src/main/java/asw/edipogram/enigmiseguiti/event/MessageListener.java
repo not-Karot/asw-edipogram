@@ -13,8 +13,6 @@ public class MessageListener {
     @Value("${asw.edipogram.channel.in}")
     private String channel;
 
-    //qua potrei aggiungere il gruppo
-
     @Autowired
     private EnigmiSeguitiService enigmiSeguitiService;
 
