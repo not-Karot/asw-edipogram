@@ -1,8 +1,5 @@
-package asw.edipogram.enigmiseguiti.eventlistener;
+package asw.edipogram.enigmiseguiti.event;
 
-import asw.edipogram.enigmiseguiti.domain.EnigmaEventHandler;
-import asw.edipogram.enigmiseguiti.event.DomainEvent;
-import asw.edipogram.enigmiseguiti.event.EnigmaServiceEventChannel;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;

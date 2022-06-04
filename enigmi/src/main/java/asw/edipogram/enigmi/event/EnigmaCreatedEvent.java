@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
-public class CreateEnigmaEvent implements DomainEvent {
+public class EnigmaCreatedEvent implements DomainEvent {
 
     private Long id;
     private String autore;

@@ -1,4 +1,4 @@
-package asw.edipogram.enigmi.domain;
+package asw.edipogram.enigmi.event;
 
 import asw.edipogram.enigmi.event.DomainEvent;
 

@@ -1,7 +1,7 @@
-package asw.edipogram.enigmiseguiti.domain;
+package asw.edipogram.enigmiseguiti.event;
 
-import asw.edipogram.enigmiseguiti.event.DomainEvent;
-import asw.edipogram.enigmiseguiti.event.CreateEnigmaEvent;
+import asw.edipogram.enigmiseguiti.domain.Enigma;
+import asw.edipogram.enigmiseguiti.domain.EnigmiSeguitiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ public class EnigmaEventHandler {
 
     public void onEvent(DomainEvent event)
     {
-        if(event.getClass().equals(CreateEnigmaEvent.class)){
-            CreateEnigmaEvent e = (CreateEnigmaEvent) event;
+        if(event.getClass().equals(EnigmaCreatedEvent.class)){
+            EnigmaCreatedEvent e = (EnigmaCreatedEvent) event;
             this.createEnigma(e);
         } else {
             logger.info("Problemi con evento: " + event);
@@ -28,7 +28,7 @@ public class EnigmaEventHandler {
     }
 
     /* Crea un enigma */
-    public void createEnigma(CreateEnigmaEvent event)
+    public void createEnigma(EnigmaCreatedEvent event)
     {
         Enigma enigma = new Enigma(
                 event.getId(),

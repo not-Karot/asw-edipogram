@@ -1,6 +1,6 @@
-package asw.edipogram.enigmi.eventpublisher;
+package asw.edipogram.enigmi.event;
 
-import asw.edipogram.enigmi.domain.EnigmaDomainEventPublisher;
+import asw.edipogram.enigmi.event.EnigmaDomainEventPublisher;
 import asw.edipogram.enigmi.event.DomainEvent;
 import asw.edipogram.enigmi.event.EnigmaServiceEventChannel;
 import org.springframework.beans.factory.annotation.Autowired;

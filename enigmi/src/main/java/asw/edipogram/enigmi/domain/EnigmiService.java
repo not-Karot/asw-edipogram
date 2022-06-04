@@ -1,7 +1,8 @@
 package asw.edipogram.enigmi.domain;
 
 import asw.edipogram.enigmi.event.DomainEvent;
-import asw.edipogram.enigmi.event.CreateEnigmaEvent;
+import asw.edipogram.enigmi.event.EnigmaCreatedEvent;
+import asw.edipogram.enigmi.event.EnigmaDomainEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class EnigmiService {
 	public Enigma createEnigma(String autore, String tipo, String tipoSpecifico, String titolo, String[] testo, String[] soluzione) {
 		Enigma enigma = new Enigma(autore, tipo, tipoSpecifico, titolo, testo, soluzione);
 		enigma = enigmiRepository.save(enigma);
-		DomainEvent event = new CreateEnigmaEvent(
+		DomainEvent event = new EnigmaCreatedEvent(
 				enigma.getId(),
 				enigma.getAutore(),
 				enigma.getTipo(),

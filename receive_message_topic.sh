@@ -8,6 +8,6 @@ echo Inizio Test Consumer...
 
 docker exec -it kafka /bin/sh
 cd /opt/bitnami/kafka/bin
-kafka-console-consumer.sh --broker-list localhost:9092 --topic TopicA
+kafka-console-consumer.sh --broker-list localhost:9092 --topic asw.edipogram.enigmi
 ls
 echo Fine Test...

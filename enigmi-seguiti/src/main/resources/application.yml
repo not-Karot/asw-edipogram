@@ -53,7 +53,7 @@ spring:
             value:
               default:
                 #type: asw.edipogram.enigmiseguiti.common.api.event.EnigmaCreatedEvent
-                type: asw.edipogram.enigmiseguiti.event.CreateEnigmaEvent
+                type: asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent
           deserializer:
             value:
               delegate:
@@ -68,3 +68,7 @@ server:
 # disable OSIV
 spring.jpa.open-in-view: false
 
+asw:
+  edipogram:
+    channel:
+      in: asw.edipogram.enigmi

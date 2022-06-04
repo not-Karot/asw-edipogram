@@ -62,7 +62,11 @@ Per eseguire questo progetto con Docker:
 
 * eseguire lo script `run-docker-compose.sh` per eseguire l'applicazione su Docker
 
+* eseguire lo script `create-kafka-topics.sh` per creare i canali Kafka
+
 * per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh`
+
+* lo script `get-events-from-topics.sh` mostra sul terminale gli eventi che transitano attraverso i canali Kafka
 
 ## Esecuzione 
 

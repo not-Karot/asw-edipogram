@@ -48,3 +48,8 @@ server:
 # disable OSIV
 spring.jpa.open-in-view: false
 
+asw:
+  edipogram:
+    channel:
+      out: asw.edipogram.enigmi
+
