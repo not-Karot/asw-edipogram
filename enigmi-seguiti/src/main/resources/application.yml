@@ -3,6 +3,11 @@
 spring: 
   application: 
     name: enigmi-seguiti
+
+  main:
+    # Kafka
+    web-application-type: none
+
   cloud:
     consul:
       host: consul
@@ -30,6 +35,30 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
 
+  kafka:
+    consumer:
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      bootstrap-servers: kafka:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            use:
+              type:
+                headers: false
+            value:
+              default:
+                #type: asw.edipogram.enigmiseguiti.common.api.event.EnigmaCreatedEvent
+                type: asw.edipogram.enigmiseguiti.event.CreateEnigmaEvent
+          deserializer:
+            value:
+              delegate:
+                class: org.springframework.kafka.support.serializer.JsonDeserializer
+
 server: 
   port: ${PORT:${SERVER_PORT:0}}
 #  port: 8080
@@ -38,3 +67,4 @@ server:
 #spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
+

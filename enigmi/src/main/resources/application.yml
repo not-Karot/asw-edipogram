@@ -1,8 +1,17 @@
 # application.yml
---- 
-spring: 
+---
+
+spring:
+
   application: 
     name: enigmi
+
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
   cloud:
     consul:
       host: consul
@@ -38,3 +47,4 @@ server:
 #spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
+
