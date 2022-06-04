@@ -22,7 +22,7 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=enigmiServiceDB
     ports:
-      - "5455:5432"
+      - "5458:5432"
 
   connessioniservicedb:
     image: postgres:latest
@@ -100,11 +100,12 @@ services:
       - KAFKA_BROKER_ID=1
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
       #      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://10.11.121:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       #- KAFKA_CREATE_TOPICS="topic1:1:1:compact"
       #- KAFKA_CREATE_TOPICS="Topic1:1:1,Topic2:1:1:compact"
-      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
+      #- KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
