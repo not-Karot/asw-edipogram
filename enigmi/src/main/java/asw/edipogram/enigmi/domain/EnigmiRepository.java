@@ -1,7 +1,11 @@
 package asw.edipogram.enigmi.domain;
 
+import asw.edipogram.enigmi.event.DomainEvent;
+import asw.edipogram.enigmi.event.EnigmaServiceEventChannel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.*; 
 
