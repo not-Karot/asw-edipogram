@@ -23,5 +23,3 @@ echo
 curl -X POST "http://localhost:8080/connessioni/connessioni" -H "accept: */*" -H "Content-Type: application/json" \
      -d "{ \"utente\": \"Enrico\", \"tipo\": \"Anagramma\"}"
 echo 
-
-
