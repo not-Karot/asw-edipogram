@@ -25,7 +25,7 @@ spring:
       ribbon.enabled: false
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -49,11 +49,13 @@ spring:
               packages: "*"
             use:
               type:
-                headers: false
-            value:
-              default:
-                #type: asw.edipogram.enigmiseguiti.common.api.event.EnigmaCreatedEvent
-                type: asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent
+                headers: true
+            # value:
+              # default:
+                # type: asw.edipogram.enigmiseguiti.common.api.event.EnigmaCreatedEvent
+                # type: asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent
+            type:
+              mapping: EnigmaCreatedEvent:asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent,ConnessioneCreatedEvent:asw.edipogram.enigmiseguiti.event.ConnessioneCreatedEvent
           deserializer:
             value:
               delegate:

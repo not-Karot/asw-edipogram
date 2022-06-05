@@ -38,6 +38,11 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: ConnessioneCreatedEvent:asw.edipogram.connessioni.event.ConnessioneCreatedEvent
 
 server: 
   port: ${PORT:${SERVER_PORT:0}}

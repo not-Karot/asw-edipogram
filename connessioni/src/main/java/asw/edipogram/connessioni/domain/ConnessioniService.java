@@ -26,7 +26,7 @@ public class ConnessioniService {
         DomainEvent event = new ConnessioneCreatedEvent(
                 connessione.getId(),
                 connessione.getUtente(),
-                connessione.getUtente());
+                connessione.getTipo());
 		domainEventPublisher.publish(event);
         return connessione;
     }

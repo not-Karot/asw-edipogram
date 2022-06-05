@@ -20,9 +20,11 @@ public class EnigmiSeguitiEventHandler {
     public void onEvent(DomainEvent event)
     {
         if(event.getClass().equals(EnigmaCreatedEvent.class)){
+            logger.info("#################################### ENIGMA ####################################");
             EnigmaCreatedEvent e = (EnigmaCreatedEvent) event;
             this.createEnigma(e);
         } else if(event.getClass().equals(ConnessioneCreatedEvent.class)){
+            logger.info("#################################### CONNESSIONE ####################################");
             ConnessioneCreatedEvent e = (ConnessioneCreatedEvent) event;
             this.createConnessione(e);
         } else {
