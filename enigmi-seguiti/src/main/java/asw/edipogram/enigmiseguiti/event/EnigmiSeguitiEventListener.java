@@ -11,9 +11,11 @@ public class EnigmiSeguitiEventListener {
     @Autowired
     private EnigmiSeguitiEventHandler enigmiSeguitiEventHandler;
 
-    private final String channel = EnigmaServiceEventChannel.channel;
+    /* Variabile apparentemente inutile che forse si può togliere
+    *  perché i canali li inserisco direttamente nell'annotazione */
+    private final String channel = EnigmiEventChannel.channel;
 
-    @KafkaListener(topics = channel, groupId = "Group1")
+    @KafkaListener(topics = {EnigmiEventChannel.channel, ConnessioniEventChannel.channel}, groupId = "Group1")
     public void listen(ConsumerRecord<String, DomainEvent> record) throws Exception
     {
         DomainEvent event = record.value();

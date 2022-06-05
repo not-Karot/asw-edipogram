@@ -1,6 +1,6 @@
 package asw.edipogram.enigmiseguiti.event;
 
-public class EnigmaServiceEventChannel {
+public class EnigmiEventChannel {
 
     public static final String channel = "asw.edipogram.enigmi";
 

@@ -62,6 +62,8 @@ Per eseguire questo progetto con Docker:
 
 * eseguire lo script `run-docker-compose.sh` per eseguire l'applicazione su Docker
 
+* se una porta non è disponibile si può terminare il processo che la occupa con `sudo fuser -k PORTA/tcp`
+
 * eseguire lo script `create-kafka-topics.sh` per creare i canali Kafka
 
 * per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh`
