@@ -6,10 +6,10 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EnigmiEventListener {
+public class EnigmiSeguitiEventListener {
 
     @Autowired
-    private EnigmaEventHandler enigmaEventHandler;
+    private EnigmiSeguitiEventHandler enigmiSeguitiEventHandler;
 
     private final String channel = EnigmaServiceEventChannel.channel;
 
@@ -17,7 +17,7 @@ public class EnigmiEventListener {
     public void listen(ConsumerRecord<String, DomainEvent> record) throws Exception
     {
         DomainEvent event = record.value();
-        enigmaEventHandler.onEvent(event);
+        enigmiSeguitiEventHandler.onEvent(event);
     }
 
 }

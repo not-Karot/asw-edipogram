@@ -18,6 +18,9 @@ public class EnigmiSeguitiService {
 	private EnigmiService enigmiService;
 
 	@Autowired
+	private ConnessioniRepository connessioniRepository;
+
+	@Autowired
 	private EnigmiRepository enigmiRepository;
 
 	/* Trova gli enigmi (in formato breve) degli utenti seguiti da utente. */ 
@@ -41,4 +44,5 @@ public class EnigmiSeguitiService {
 		enigmiRepository.save(enigma);
 	}
 
+	public void addConnessione(Connessione connessione) { connessioniRepository.save(connessione); }
 }

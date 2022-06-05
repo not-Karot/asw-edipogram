@@ -1,5 +1,6 @@
 package asw.edipogram.enigmiseguiti.event;
 
+import asw.edipogram.enigmiseguiti.domain.Connessione;
 import asw.edipogram.enigmiseguiti.domain.Enigma;
 import asw.edipogram.enigmiseguiti.domain.EnigmiSeguitiService;
 import org.slf4j.Logger;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class EnigmaEventHandler {
+public class EnigmiSeguitiEventHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(EnigmaEventHandler.class.toString());
+    private static final Logger logger = LoggerFactory.getLogger(EnigmiSeguitiEventHandler.class.toString());
 
     @Autowired
     private EnigmiSeguitiService enigmiSeguitiService;
@@ -21,15 +22,17 @@ public class EnigmaEventHandler {
         if(event.getClass().equals(EnigmaCreatedEvent.class)){
             EnigmaCreatedEvent e = (EnigmaCreatedEvent) event;
             this.createEnigma(e);
+        } else if(event.getClass().equals(ConnessioneCreatedEvent.class)){
+            ConnessioneCreatedEvent e = (ConnessioneCreatedEvent) event;
+            this.createConnessione(e);
         } else {
-            logger.info("Problemi con evento: " + event);
+            logger.info("Problema con evento di tipo " + event);
         }
 
     }
 
     /* Crea un enigma */
-    public void createEnigma(EnigmaCreatedEvent event)
-    {
+    public void createEnigma(EnigmaCreatedEvent event) {
         Enigma enigma = new Enigma(
                 event.getId(),
                 event.getAutore(),
@@ -39,7 +42,17 @@ public class EnigmaEventHandler {
                 event.getTesto()
         );
         enigmiSeguitiService.addEnigma(enigma);
-        logger.info("Creato l'enigma: " + event);
+        logger.info("Creato l'enigma: " + enigma.toString());
     }
 
+    /* Crea una connessione */
+    private void createConnessione(ConnessioneCreatedEvent event) {
+        Connessione connessione = new Connessione(
+                event.getId(),
+                event.getUtente(),
+                event.getTipo()
+        );
+        enigmiSeguitiService.addConnessione(connessione);
+        logger.info("Creata la connessione: " + connessione.toString());
+    }
 }
