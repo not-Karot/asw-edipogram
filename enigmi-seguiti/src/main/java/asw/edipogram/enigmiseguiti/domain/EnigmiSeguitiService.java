@@ -73,4 +73,23 @@ public class EnigmiSeguitiService {
                 });
         logger.info(connessioni.toString());
     }
+
+    /* Aggiunge gli enigmi seguiti al db alla ricezione di ConnessioneCreatedEvent */
+    public void addEnigmiSeguitiByConnessione(Connessione connessione) {
+        String tipo = connessione.getTipo();
+        Collection<Enigma> enigmi = enigmiRepository.findByTipo(tipo);
+        enigmi.forEach(e -> {
+            EnigmiSeguiti enigmiSeguiti = new EnigmiSeguiti(
+                    connessione.getUtente(),
+                    e.getId(),
+                    e.getAutore(),
+                    e.getTipo(),
+                    e.getTipoSpecifico(),
+                    e.getTitolo(),
+                    e.getTesto()
+            );
+            enigmiSeguitiRepository.save(enigmiSeguiti);
+        });
+        logger.info(enigmi.toString());
+    }
 }

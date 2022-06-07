@@ -25,7 +25,8 @@ public class EnigmiSeguitiEventHandler {
         } else if (event.getClass().equals(ConnessioneCreatedEvent.class)) {
             logger.info("ConnessioneCreatedEvent received: " + event);
             ConnessioneCreatedEvent e = (ConnessioneCreatedEvent) event;
-            this.createConnessione(e);
+            Connessione connessione = this.createConnessione(e);
+            enigmiSeguitiService.addEnigmiSeguitiByConnessione(connessione);
         } else {
             logger.info("Event not supported: " + event.getClass());
         }
