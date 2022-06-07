@@ -27,8 +27,7 @@ public class EnigmiService {
 				enigma.getTipo(),
 				enigma.getTipoSpecifico(),
 				enigma.getTitolo(),
-				enigma.getTesto(),
-				enigma.getSoluzione()
+				enigma.getTesto()
 		);
 		domainEventPublisher.publish(event);
 		return enigma;

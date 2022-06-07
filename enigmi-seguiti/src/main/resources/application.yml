@@ -1,18 +1,15 @@
 # application.yml 
---- 
-spring: 
-  application: 
+---
+spring:
+  application:
     name: enigmi-seguiti
-
-  main:
-    # Kafka
-    web-application-type: none
-
+  #  main:
+  #    web-application-type: none
   cloud:
     consul:
       host: consul
       port: 8500
-      discovery: 
+      discovery:
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
         healthCheckPath: /actuator/health
         healthCheckInterval: 10s
@@ -20,8 +17,8 @@ spring:
         # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
         healthCheckCriticalTimeout: 45s
         # consul deve restituire solo servizi che passano l'health check (default=false) 
-        queryPassing: true 
-    loadbalancer: 
+        queryPassing: true
+    loadbalancer:
       ribbon.enabled: false
   jpa:
     hibernate:
@@ -34,7 +31,6 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
-
   kafka:
     consumer:
       group-id: ${spring.application.name}
@@ -47,30 +43,16 @@ spring:
           json:
             trusted:
               packages: "*"
-            use:
-              type:
-                headers: true
-            # value:
-              # default:
-                # type: asw.edipogram.enigmiseguiti.common.api.event.EnigmaCreatedEvent
-                # type: asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent
             type:
-              mapping: EnigmaCreatedEvent:asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent,ConnessioneCreatedEvent:asw.edipogram.enigmiseguiti.event.ConnessioneCreatedEvent
+              mapping: EnigmaCreatedEvent:asw.edipogram.enigmiseguiti.event.EnigmaCreatedEvent, ConnessioneCreatedEvent:asw.edipogram.enigmiseguiti.event.ConnessioneCreatedEvent
           deserializer:
             value:
               delegate:
                 class: org.springframework.kafka.support.serializer.JsonDeserializer
 
-server: 
+server:
   port: ${PORT:${SERVER_PORT:0}}
 #  port: 8080
 
-# fa il logging dei comandi sql eseguiti 
-#spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
-
-asw:
-  edipogram:
-    channel:
-      in: asw.edipogram.enigmi

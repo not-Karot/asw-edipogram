@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class EnigmiSeguitiEventHandler {
 
@@ -17,24 +16,23 @@ public class EnigmiSeguitiEventHandler {
     @Autowired
     private EnigmiSeguitiService enigmiSeguitiService;
 
-    public void onEvent(DomainEvent event)
-    {
-        if(event.getClass().equals(EnigmaCreatedEvent.class)){
-            logger.info("#################################### ENIGMA ####################################");
+    public void onEvent(DomainEvent event) {
+        if (event.getClass().equals(EnigmaCreatedEvent.class)) {
+            logger.info("EnigmaCreatedEvent received: " + event);
             EnigmaCreatedEvent e = (EnigmaCreatedEvent) event;
-            this.createEnigma(e);
-        } else if(event.getClass().equals(ConnessioneCreatedEvent.class)){
-            logger.info("#################################### CONNESSIONE ####################################");
+            Enigma enigma = this.createEnigma(e);
+            enigmiSeguitiService.addEnigmiSeguitiByEnigma(enigma);
+        } else if (event.getClass().equals(ConnessioneCreatedEvent.class)) {
+            logger.info("ConnessioneCreatedEvent received: " + event);
             ConnessioneCreatedEvent e = (ConnessioneCreatedEvent) event;
             this.createConnessione(e);
         } else {
-            logger.info("Problema con evento di tipo " + event);
+            logger.info("Event not supported: " + event.getClass());
         }
-
     }
 
     /* Crea un enigma */
-    public void createEnigma(EnigmaCreatedEvent event) {
+    private Enigma createEnigma(EnigmaCreatedEvent event) {
         Enigma enigma = new Enigma(
                 event.getId(),
                 event.getAutore(),
@@ -44,17 +42,21 @@ public class EnigmiSeguitiEventHandler {
                 event.getTesto()
         );
         enigmiSeguitiService.addEnigma(enigma);
-        logger.info("Creato l'enigma: " + enigma.toString());
+        logger.info("Enigma created: " + enigma);
+
+        return enigma;
     }
 
     /* Crea una connessione */
-    private void createConnessione(ConnessioneCreatedEvent event) {
+    private Connessione createConnessione(ConnessioneCreatedEvent event) {
         Connessione connessione = new Connessione(
                 event.getId(),
                 event.getUtente(),
                 event.getTipo()
         );
         enigmiSeguitiService.addConnessione(connessione);
-        logger.info("Creata la connessione: " + connessione.toString());
+        logger.info("Connessione created: " + connessione);
+
+        return connessione;
     }
 }

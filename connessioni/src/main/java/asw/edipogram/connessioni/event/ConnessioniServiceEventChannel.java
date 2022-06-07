@@ -2,6 +2,6 @@ package asw.edipogram.connessioni.event;
 
 public class ConnessioniServiceEventChannel {
 
-    public static final String channel= "asw.edipogram.connessioni";
+    public static final String CHANNEL = "connessioni-event-channel";
 
 }
