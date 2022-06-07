@@ -28,19 +28,23 @@ public class EnigmiSeguitiService {
     private EnigmiSeguitiRepository enigmiSeguitiRepository;
 
     /* Trova gli enigmi (in formato breve) degli utenti seguiti da utente. */
-    public Collection<Enigma> getEnigmiSeguiti(String utente) {
-        Collection<Enigma> enigmiSeguiti = new TreeSet<>();
-        Collection<Connessione> connessioni = connessioniService.getConnessioniByUtente(utente);
-        Collection<String> tipiSeguiti =
-                connessioni
-                        .stream()
-                        .map(c -> c.getTipo())
-                        .collect(Collectors.toSet());
-        if (tipiSeguiti.size() > 0) {
-            Collection<Enigma> enigmi = enigmiService.getEnigmiByTipi(tipiSeguiti);
-            enigmiSeguiti.addAll(enigmi);
-        }
-        return enigmiSeguiti;
+//    public Collection<Enigma> getEnigmiSeguiti(String utente) {
+//        Collection<Enigma> enigmiSeguiti = new TreeSet<>();
+//        Collection<Connessione> connessioni = connessioniService.getConnessioniByUtente(utente);
+//        Collection<String> tipiSeguiti =
+//                connessioni
+//                        .stream()
+//                        .map(c -> c.getTipo())
+//                        .collect(Collectors.toSet());
+//        if (tipiSeguiti.size() > 0) {
+//            Collection<Enigma> enigmi = enigmiService.getEnigmiByTipi(tipiSeguiti);
+//            enigmiSeguiti.addAll(enigmi);
+//        }
+//        return enigmiSeguiti;
+//    }
+
+    public Collection<EnigmiSeguiti> getEnigmiSeguiti(String utente) {
+        return enigmiSeguitiRepository.findByUtente(utente);
     }
 
     /* Aggiunge un enigma al db */

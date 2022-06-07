@@ -7,4 +7,6 @@ import java.util.Collection;
 public interface EnigmiSeguitiRepository extends CrudRepository<EnigmiSeguiti, EnigmiSeguitiId> {
 
     public Collection<EnigmiSeguiti> findAll();
+
+    public Collection<EnigmiSeguiti> findByUtente(String utente);
 }

@@ -22,13 +22,13 @@ public class EnigmiSeguitiController {
 
     /* Trova gli enigmi (in formato breve) degli utenti seguiti da utente. */
     @GetMapping("/enigmiseguiti/{utente}")
-    public Collection<Enigma> getEnigmiSeguiti(@PathVariable String utente) {
+    public Collection<EnigmiSeguiti> getEnigmiSeguiti(@PathVariable String utente) {
         Instant start = Instant.now();
         logger.info("REST CALL: getEnigmiSeguiti " + utente);
-        Collection<Enigma> enigmi = enigmiSeguitiService.getEnigmiSeguiti(utente);
+        Collection<EnigmiSeguiti> enigmiSeguiti = enigmiSeguitiService.getEnigmiSeguiti(utente);
         Duration duration = Duration.between(start, Instant.now());
-        logger.info("getEnigmiSeguiti " + utente + " (trovati " + enigmi.size() + " enigmi in " + duration.toMillis() + " ms): " + enigmi);
-        return enigmi;
+        logger.info("getEnigmiSeguiti " + utente + " (found " + enigmiSeguiti.size() + " enigmi in " + duration.toMillis() + " ms): " + enigmiSeguiti);
+        return enigmiSeguiti;
     }
 
 }
