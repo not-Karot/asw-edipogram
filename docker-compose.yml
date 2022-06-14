@@ -10,14 +10,14 @@ services:
   adminer:
     image: adminer:latest
     container_name: adminer
-    restart: always
+    restart: unless-stopped
     ports:
       - "9000:8080"
 
   enigmiservicedb:
     image: postgres:latest
     container_name: enigmiServiceDB
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=enigmiServiceDB
@@ -27,7 +27,7 @@ services:
   connessioniservicedb:
     image: postgres:latest
     container_name: connessioniServiceDB
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=connessioniServiceDB
@@ -37,7 +37,7 @@ services:
   enigmiseguitiservicedb:
     image: postgres:latest
     container_name: enigmiSeguitiServiceDB
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=enigmiSeguitiServiceDB
@@ -46,8 +46,7 @@ services:
 
   apigateway:
     container_name: apigateway
-    image: apigateway-service
-    build: ./api-gateway
+    image: tibbo93/apigateway
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -55,30 +54,33 @@ services:
       - "consul"
 
   enigmi:
-    image: enigmi-service
-    container_name: enigmiService
-    build: ./enigmi
+    image: tibbo93/enigmi-service
     restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 2
     depends_on:
       - consul
       - enigmiservicedb
       - kafka
 
   connessioni:
-    image: connessioni-service
-    container_name: connessioniService
-    build: ./connessioni
+    image: tibbo93/connessioni-service
     restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 2
     depends_on:
       - consul
       - connessioniservicedb
       - kafka
 
   enigmiseguiti:
-    image: enigmi-seguiti-service
-    container_name: enigmiSeguitiService
-    build: ./enigmi-seguiti
+    image: tibbo93/enigmi-seguiti-service
     restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 3
     depends_on:
       - consul
       - enigmiseguitiservicedb
