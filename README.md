@@ -56,7 +56,7 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
 
 Per eseguire questo progetto con Docker:
 
-* avviare Docker sulla propria macchina
+* avviare Docker
 
 * eseguire lo script `build-java-project.sh` per buildare il progetto
 
@@ -64,11 +64,25 @@ Per eseguire questo progetto con Docker:
 
 * se una porta non è disponibile si può terminare il processo che la occupa con `sudo fuser -k PORTA/tcp`
 
-* eseguire lo script `create-kafka-topics.sh` per creare i canali Kafka
-
 * per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh`
 
 * lo script `get-events-from-topics.sh` mostra sul terminale gli eventi che transitano attraverso i canali Kafka
+
+## Esecuzione con Kubernetes
+
+Per eseguire questo progetto con Kubernetes:
+
+* installare kubectl, kompose e minikube
+
+* avviare Docker
+
+* nella cartella `kubernetes` eseguire i seguenti script:
+
+  * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
+
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
+
+  * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva del cluster
 
 ## Esecuzione 
 
