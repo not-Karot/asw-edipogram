@@ -80,6 +80,8 @@ Per eseguire questo progetto con Kubernetes:
 
   * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
 
+  * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace "edipogram"
+
   * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
 
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva del cluster
