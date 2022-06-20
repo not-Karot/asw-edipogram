@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: enigmiseguiti
+  namespace: edipogram
 spec:
   selector:
     matchLabels:
@@ -13,7 +14,7 @@ spec:
     spec:
       containers:
         - name: enigmiseguiti
-          image: tibbo93/enigmi-seguiti-service:kube
+          image: tibbo93/enigmi-seguiti-service:kube-consul
           ports:
             - name: http
               containerPort: 8080
@@ -23,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: enigmiseguiti
+  namespace: edipogram
 spec:
   selector:
     app: enigmiseguiti

@@ -1,23 +1,8 @@
 # application.yml
 ---
-
 spring:
-
   application: 
     name: enigmi
-
-  kafka:
-    producer:
-      bootstrap-servers: kafka:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring:
-          json:
-            type:
-              mapping: EnigmaCreatedEvent:asw.edipogram.enigmi.event.EnigmaCreatedEvent
-
-
   cloud:
     consul:
       host: consul
@@ -30,7 +15,8 @@ spring:
         # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
         healthCheckCriticalTimeout: 45s
         # consul deve restituire solo servizi che passano l'health check (default=false) 
-        queryPassing: true 
+        queryPassing: true
+        prefer-ip-address: true
     loadbalancer: 
       ribbon.enabled: false
   jpa:
@@ -44,6 +30,16 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
+  kafka:
+    producer:
+      bootstrap-servers: kafka-service:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: EnigmaCreatedEvent:asw.edipogram.enigmi.event.EnigmaCreatedEvent
 
 server: 
   port: ${PORT:${SERVER_PORT:0}}
@@ -53,9 +49,3 @@ server:
 #spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
-
-asw:
-  edipogram:
-    channel:
-      out: asw.edipogram.enigmi
-

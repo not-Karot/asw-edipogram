@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: enigmiservicedb
+  namespace: edipogram
 spec:
   selector:
     matchLabels:
@@ -30,6 +31,7 @@ metadata:
   name: enigmiservicedb
   labels:
     app: enigmiservicedb
+  namespace: edipogram
 spec:
   selector:
     app: enigmiservicedb
