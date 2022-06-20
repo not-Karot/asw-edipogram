@@ -78,23 +78,23 @@ Per eseguire questo progetto con Kubernetes:
 
 * avviare Docker
 
-* nella cartella `kubernetes` eseguire i seguenti script:
+* nella cartella `kubernetes/script` eseguire i seguenti script:
 
   * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
 
   * `enable-minikube-ingress-controller.sh` per attivare l'ingress controller utilizzato da minikube
 
-  * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace "edipogram"
+  * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace "**edipogram**"
 
   * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
 
   * aggiungere le seguente riga alla fine del file `/etc/hosts`
     ```shell
-    127.0.0.1 apigateway
+    127.0.0.1 edipogram
     ```
     per farlo utilizzare un qualsiasi editor di testo con i permessi di root
 
-  *  `minikube-tunnel.sh` per creare una connessione con l'applicazione
+  *  `run-minikube-tunnel.sh` per creare una connessione con l'applicazione
 
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
 
