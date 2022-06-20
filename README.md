@@ -98,6 +98,9 @@ Per eseguire questo progetto con Kubernetes:
 
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
 
+ > Nel caso in cui alcuni pods non riescano a rimanere attivi, assicurarsi che la memoria a disposizione di minikube sia sufficiente.
+> Per modificare la memoria allocabile da minikube utilizzare il comando `minikube config set memory 7g`
+
 ## Esecuzione 
 
 Per eseguire questo progetto: 
