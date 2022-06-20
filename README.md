@@ -74,7 +74,7 @@ Per eseguire questo progetto con Docker:
 
 Per eseguire questo progetto con Kubernetes:
 
-* installare kubectl, kompose e minikube
+* installare kubectl e minikube
 
 * avviare Docker
 
