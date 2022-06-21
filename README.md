@@ -52,7 +52,7 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni/{utente}`
   * espone il servizio *enigmi-seguiti* sul path `/enigmi-seguiti` - ad esempio, `GET /enigmi-seguiti/enigmiseguiti/{utente}`
 
-## Esecuzione con Docker
+## Deploy con Docker
 
 Per eseguire questo progetto con Docker:
 
@@ -68,9 +68,56 @@ Per eseguire questo progetto con Docker:
 
 * lo script `get-events-from-topics.sh` mostra sul terminale gli eventi che transitano attraverso i canali Kafka
 
-## Esecuzione con Kubernetes
+## Deploy con Kubernetes
 
-### Deploy su macOS:
+### Prerequisiti:
+
+* installa l'ultima versione di [Vagrant](https://www.vagrantup.com/downloads)
+
+* installa l'ultima versione di [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
+### Deploy:
+
+* posizionarsi nella cartella `/environment` ed eseguire il seguente comando per avviare o creare l'ambiente di esecuzione:
+  ```shell
+  vagrant up
+  ```
+
+* per collegarsi con SSH alla VM dell'ambiente esguire il seguente comando ed attendere la fine del processo (potrebbe richiedere alcuni minuti):
+  ```shell
+  vagrant ssh
+  ```
+  
+* all'interno della VM eseguire il seguente comando per aggiungere l'utente al gruppo 'docker':
+  ```shell
+  sudo usermod -aG docker $USER && newgrp docker
+  ```
+
+* all'interno della VM posizionarsi nella cartella `asw-edipogram/kubernetes/script` eseguire i seguenti script:
+
+  * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
+
+  * `enable-minikube-ingress-controller.sh` per attivare l'ingress controller utilizzato da minikube
+
+  * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace **edipogram**
+
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
+  
+  * eseguire il seguente comando:
+    ```shell
+    minikube ip
+    ```
+    e aggiungere la seguente riga alla fine del file `/etc/hosts`:
+    ```shell
+    192.168.49.2 edipogram
+    ```
+    sostituendo l'ip con quello in output dal comando precedente. Per farlo utilizzare il seguente comando per modificare il file `/etc/hosts`:
+    ```shell
+    sudo nano /etc/hosts
+    ```
+    premere ctrl + x, y, enter per salvare il file
+
+## Deploy con Kubernetes su macOS con processore M1:
 
 Per eseguire questo progetto con Kubernetes:
 
@@ -97,22 +144,14 @@ Per eseguire questo progetto con Kubernetes:
   *  `run-minikube-tunnel.sh` per creare una connessione con l'applicazione
 
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
+  
+## Esecuzione
 
- > Nel caso in cui alcuni pods non riescano a rimanere attivi, assicurarsi che la memoria a disposizione di minikube sia sufficiente.
-> Per modificare la memoria allocabile da minikube utilizzare il comando `minikube config set memory 7g`
+È possibile testare il corretto funzionamento dell'applicazione attraverso alcuni script di esempio:
 
-## Esecuzione 
+* per Kubernetes eseguire gli script contenuti nella cartella `kubernetes/script`
 
-Per eseguire questo progetto: 
-
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
-
-* per avviare l'applicazione *Edipogram*, eseguire lo script `run-edipogram.sh` 
-
-* per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh` 
-
-
-Sono anche forniti alcuni script di esempio: 
+### Script:
 
 * lo script `run-curl-client.sh` esegue un insieme di interrogazioni di esempio 
 
@@ -136,13 +175,4 @@ Ed inoltre:
 
 * lo script `do-post-altri-enigmi.sh` aggiunge nuovi enigmi 
 
-* lo script `do-post-altre-connessioni.sh` aggiunge nuove connessioni 
-
-Alla fine, l'applicazione può essere arrestata usando lo script `kill-java-processes.sh` (**da usare con cautela!**). 
-
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
-
-
-## Descrizione delle attività da svolgere 
-
-Si veda la descrizione del progetto sul sito web del corso di [Architettura dei sistemi software](http://cabibbo.dia.uniroma3.it/asw/).
+* lo script `do-post-altre-connessioni.sh` aggiunge nuove connessioni
