@@ -125,7 +125,7 @@ Per eseguire questo progetto con Kubernetes:
 
 * avviare Docker
 
-* nella cartella `kubernetes/script` eseguire i seguenti script:
+* nella cartella `kubernetes-for-mac-m1/script` eseguire i seguenti script:
 
   * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
 
