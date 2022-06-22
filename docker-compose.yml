@@ -23,6 +23,8 @@ services:
       - POSTGRES_DB=enigmiServiceDB
     ports:
       - "5455:5432"
+    volumes:
+      - ./enigmiservicedb-data:/var/lib/postgresql/data
 
   connessioniservicedb:
     image: postgres:latest
@@ -33,6 +35,8 @@ services:
       - POSTGRES_DB=connessioniServiceDB
     ports:
       - "5456:5432"
+    volumes:
+      - ./connessioniservicedb-data:/var/lib/postgresql/data
 
   enigmiseguitiservicedb:
     image: postgres:latest
@@ -43,6 +47,8 @@ services:
       - POSTGRES_DB=enigmiSeguitiServiceDB
     ports:
       - "5457:5432"
+    volumes:
+      - ./enigmiseguitiservicedb-data:/var/lib/postgresql/data
 
   apigateway:
     container_name: apigateway
