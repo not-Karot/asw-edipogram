@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: enigmiseguiti
-          image: tibbo93/enigmi-seguiti-service:kube-consul
+          image: tibbo93/enigmi-seguiti-service:kube-arm64
           ports:
             - name: http
               containerPort: 8080

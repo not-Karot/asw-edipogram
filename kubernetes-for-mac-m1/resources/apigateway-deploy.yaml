@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: apigateway
-          image: tibbo93/apigateway:kube-consul
+          image: tibbo93/apigateway:kube-arm64
           ports:
             - name: http
               containerPort: 8080
