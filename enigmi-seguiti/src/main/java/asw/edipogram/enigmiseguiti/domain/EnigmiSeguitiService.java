@@ -11,13 +11,7 @@ import java.util.stream.*;
 public class EnigmiSeguitiService {
 
     private final Logger logger = Logger.getLogger(EnigmiSeguitiService.class.toString());
-
-    @Autowired
-    private ConnessioniService connessioniService;
-
-    @Autowired
-    private EnigmiService enigmiService;
-
+    
     @Autowired
     private ConnessioniRepository connessioniRepository;
 
@@ -26,22 +20,6 @@ public class EnigmiSeguitiService {
 
     @Autowired
     private EnigmiSeguitiRepository enigmiSeguitiRepository;
-
-    /* Trova gli enigmi (in formato breve) degli utenti seguiti da utente. */
-//    public Collection<Enigma> getEnigmiSeguiti(String utente) {
-//        Collection<Enigma> enigmiSeguiti = new TreeSet<>();
-//        Collection<Connessione> connessioni = connessioniService.getConnessioniByUtente(utente);
-//        Collection<String> tipiSeguiti =
-//                connessioni
-//                        .stream()
-//                        .map(c -> c.getTipo())
-//                        .collect(Collectors.toSet());
-//        if (tipiSeguiti.size() > 0) {
-//            Collection<Enigma> enigmi = enigmiService.getEnigmiByTipi(tipiSeguiti);
-//            enigmiSeguiti.addAll(enigmi);
-//        }
-//        return enigmiSeguiti;
-//    }
 
     public Collection<EnigmiSeguiti> getEnigmiSeguiti(String utente) {
         return enigmiSeguitiRepository.findByUtente(utente);

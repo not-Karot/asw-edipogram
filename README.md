@@ -1,6 +1,6 @@
 # EDIPOGRAM
 
-Progetto del corso di Analisi e progettazione del software per l'anno accademico 2021-2022. 
+Progetto del corso di Architettura del software per l'anno accademico 2021-2022. 
 
 
 ## Descrizione di questo progetto 
@@ -52,23 +52,51 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni/{utente}`
   * espone il servizio *enigmi-seguiti* sul path `/enigmi-seguiti` - ad esempio, `GET /enigmi-seguiti/enigmiseguiti/{utente}`
 
-## Deploy con Docker
+## Organizzazione del repository
+
+Il repository è organizzato in diverse cartelle:
+
+* [environment](environment/): contente il codice per l'esecuzione dell'ambiente virtuale Vagrant utilizzzato per il rilascio
+  dell'applicazione con Kubernetes
+* [docker](docker/): contiene tutti gli script relativi al rilascio e all'esecuzione dell'applicazione attraverso Docker
+* [kubernetes](kubernetes/): contenente tutti i file relativi al rilascio e all'esecuzione dell'applicazione attraverso Kubernetes
+  utilizzando l'ambiente virtuale fornito della cartella [environment](environment/)
+  Diviso in due sottocartelle:
+  * [script](kubernetes/script): contenente tutti gli script per il rilascio su kubernetes e per l'esecuzione dell'applicazione
+  * [resources](kubernetes/resources): contenente tutti i file relativi alle risorse Kubernetes utilizzate
+* [kubernetes-for-mac-m1](kubernetes-for-mac-m1/): contenente tutti i file relativi al rilascio e all'esecuzione dell'applicazione se si sta 
+utilizzando un MacBook con processore M1
+Diviso in due sottocartelle:
+  * [script](kubernetes-for-mac-m1/script): contenente tutti gli script per il rilascio su kubernetes e per l'esecuzione dell'applicazione
+  * [resources](kubernetes-for-mac-m1/resources): contenente tutti i file relativi alle risorse Kubernetes utilizzate
+* [api-gateway](api-gateway/): contenente il codice sorgente del servizio applicativo apigateway
+* [enigmi](enigmi/): contenente il codice sorgente del servizio applicativo enigmi
+* [connessioni](connessioni/): contenente il codice sorgente del servizio applicativo connessioni
+* [enigmi-seguiti](enigmi-seguiti/): contenente il codice sorgente del servizio applicativo enigmiseguiti
+
+
+## Software da installare sul proprio PC
+
+* [VirtualBox](https://www.virtualbox.org/)
+* [Vagrant](https://www.vagrantup.com/)
+* [Git](https://git-scm.com/)
+* [Docker](https://www.docker.com/)
+
+## Rilascio con Docker
 
 Per eseguire questo progetto con Docker:
 
 * avviare Docker
 
-* eseguire lo script `build-java-project.sh` per buildare il progetto
+* posizionarsi nella cartella `docker` ed eseguire i seguenti script:
 
-* eseguire lo script `run-docker-compose.sh` per eseguire l'applicazione su Docker
+  * `run-docker-compose.sh` per eseguire l'applicazione su Docker
+  
+  * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
 
-* se una porta non è disponibile si può terminare il processo che la occupa con `sudo fuser -k PORTA/tcp`
+Attenzione: se una porta non è disponibile si può terminare il processo che la occupa con `sudo fuser -k PORTA/tcp`
 
-* per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-enigmi.sh` e `do-init-connessioni.sh`
-
-* lo script `get-events-from-topics.sh` mostra sul terminale gli eventi che transitano attraverso i canali Kafka
-
-## Deploy con Kubernetes
+## Rilascio con Kubernetes
 
 ### Prerequisiti:
 
@@ -101,7 +129,7 @@ Per eseguire questo progetto con Docker:
 
   * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace **edipogram**
 
-  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster ((l'operazione potrebbe richiedere alcuni minuti))
   
   * eseguire il seguente comando:
     ```shell
@@ -117,7 +145,11 @@ Per eseguire questo progetto con Docker:
     ```
     premere ctrl + x, y, enter per salvare il file
 
-## Deploy con Kubernetes su macOS con processore M1:
+  * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
+
+  * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
+
+## Rilascio con Kubernetes su macOS con processore M1:
 
 Per eseguire questo progetto con Kubernetes:
 
@@ -125,7 +157,7 @@ Per eseguire questo progetto con Kubernetes:
 
 * avviare Docker
 
-* nella cartella `kubernetes-for-mac-m1/script` eseguire i seguenti script:
+* posizionarsi nella cartella `kubernetes-for-mac-m1/script` ed eseguire i seguenti script:
 
   * `start-minikube.sh` per inizializzare il cluster (attendere la fine del processo)
 
@@ -133,7 +165,7 @@ Per eseguire questo progetto con Kubernetes:
 
   * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace "**edipogram**"
 
-  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster (l'operazione potrebbe richiedere alcuni minuti)
 
   * aggiungere le seguente riga alla fine del file `/etc/hosts`
     ```shell
@@ -141,9 +173,14 @@ Per eseguire questo progetto con Kubernetes:
     ```
     per farlo utilizzare un qualsiasi editor di testo con i permessi di root
 
-  *  `run-minikube-tunnel.sh` per creare una connessione con l'applicazione
+  * `run-minikube-tunnel.sh` per creare una connessione con l'applicazione
 
+  * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
+  
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
+
+Attenzione: nel caso in cui alcuni pods non riescano a rimanere attivi, assicurarsi che la memoria a disposizione di minikube sia sufficiente. 
+Per modificare la memoria allocabile da minikube utilizzare il comando `minikube config set memory 5g`
   
 ## Esecuzione
 

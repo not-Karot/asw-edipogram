@@ -4,6 +4,7 @@ services:
   consul:
     container_name: consul
     image: consul
+    restart: unless-stopped
     ports:
       - "8500:8500"
 
@@ -23,8 +24,6 @@ services:
       - POSTGRES_DB=enigmiServiceDB
     ports:
       - "5455:5432"
-    volumes:
-      - ./enigmiservicedb-data:/var/lib/postgresql/data
 
   connessioniservicedb:
     image: postgres:latest
@@ -35,8 +34,6 @@ services:
       - POSTGRES_DB=connessioniServiceDB
     ports:
       - "5456:5432"
-    volumes:
-      - ./connessioniservicedb-data:/var/lib/postgresql/data
 
   enigmiseguitiservicedb:
     image: postgres:latest
@@ -47,12 +44,10 @@ services:
       - POSTGRES_DB=enigmiSeguitiServiceDB
     ports:
       - "5457:5432"
-    volumes:
-      - ./enigmiseguitiservicedb-data:/var/lib/postgresql/data
 
   apigateway:
-    container_name: apigateway
     image: tibbo93/apigateway
+    container_name: apigateway
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -95,6 +90,7 @@ services:
   zookeeper:
     image: bitnami/zookeeper:latest
     container_name: zookeeper
+    restart: unless-stopped
     ports:
       - "2181:2181"
     environment:
@@ -103,6 +99,7 @@ services:
   kafka:
     image: bitnami/kafka:latest
     container_name: kafka
+    restart: unless-stopped
     depends_on:
       - "zookeeper"
     ports:

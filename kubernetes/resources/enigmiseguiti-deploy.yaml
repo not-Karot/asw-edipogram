@@ -4,6 +4,7 @@ metadata:
   name: enigmiseguiti
   namespace: edipogram
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: enigmiseguiti
