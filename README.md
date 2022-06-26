@@ -111,7 +111,7 @@ Attenzione: se una porta non è disponibile si può terminare il processo che la
   vagrant up
   ```
 
-* per collegarsi con SSH alla VM dell'ambiente esguire il seguente comando ed attendere la fine del processo (potrebbe richiedere alcuni minuti):
+* per collegarsi con SSH alla VM dell'ambiente esguire il seguente comando ed attendere la fine del processo:
   ```shell
   vagrant ssh
   ```
@@ -119,6 +119,11 @@ Attenzione: se una porta non è disponibile si può terminare il processo che la
 * all'interno della VM eseguire il seguente comando per aggiungere l'utente al gruppo 'docker':
   ```shell
   sudo usermod -aG docker $USER && newgrp docker
+  ```
+
+* all'interno della VM eseguire il seguente comando per modificare la memoria assegnata a minikube:
+  ```shell
+  minikube config set memory 4g
   ```
 
 * all'interno della VM posizionarsi nella cartella `asw-edipogram/kubernetes/script` eseguire i seguenti script:
@@ -129,7 +134,7 @@ Attenzione: se una porta non è disponibile si può terminare il processo che la
 
   * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace **edipogram**
 
-  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster ((l'operazione potrebbe richiedere alcuni minuti))
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster (l'operazione di creazione dei contener potrebbe richiedere alcuni minuti)
   
   * eseguire il seguente comando:
     ```shell
@@ -149,6 +154,15 @@ Attenzione: se una porta non è disponibile si può terminare il processo che la
 
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
 
+  * opzionale: `run-k8s-get-pods.sh` per visualizzare la lista dei pod disponibili
+
+  * `delete-minikube.sh` per eliminare il cluster minikube
+
+* per eliminare l'ambiente virtuale Vagrant eseguire il seguente comando
+```shell
+  vagrant destroy
+```
+
 ## Rilascio con Kubernetes su macOS con processore M1:
 
 Per eseguire questo progetto con Kubernetes:
@@ -165,7 +179,7 @@ Per eseguire questo progetto con Kubernetes:
 
   * `init-k8s-edipogram-namespace.sh` per aggiungere il namespace "**edipogram**"
 
-  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster (l'operazione potrebbe richiedere alcuni minuti)
+  * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster (l'operazione di creazione dei contener potrebbe richiedere alcuni minuti)
 
   * aggiungere le seguente riga alla fine del file `/etc/hosts`
     ```shell
@@ -178,6 +192,10 @@ Per eseguire questo progetto con Kubernetes:
   * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
   
   * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
+
+  * opzionale: `run-k8s-get-pods` per visualizzare la lista dei pod disponibili
+
+  * `delete-minikube.sh` per eliminare il cluster minikube
 
 Attenzione: nel caso in cui alcuni pods non riescano a rimanere attivi, assicurarsi che la memoria a disposizione di minikube sia sufficiente. 
 Per modificare la memoria allocabile da minikube utilizzare il comando `minikube config set memory 5g`

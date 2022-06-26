@@ -25,7 +25,6 @@ $edipogram = <<-'SCRIPT'
 git clone https://github.com/not-Karot/asw-edipogram.git
 cd asw-edipogram/
 git checkout kubernetes
-minikube config set memory 4g
 SCRIPT
 
 Vagrant.configure("2") do |config|
