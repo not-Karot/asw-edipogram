@@ -183,6 +183,8 @@ Per eseguire questo progetto con Kubernetes:
 
   * `init-k8s-resources.sh` per inizializzare tutte le risorse del cluster (l'operazione di creazione dei contener potrebbe richiedere alcuni minuti)
 
+  * opzionale: `run-k8s-get-pods` per visualizzare la lista dei pod disponibili
+
   * aggiungere le seguente riga alla fine del file `/etc/hosts`
     ```shell
     127.0.0.1 edipogram
@@ -193,10 +195,6 @@ Per eseguire questo progetto con Kubernetes:
 
   * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
   
-  * opzionale: `run-minikube-dashboard.sh` per accedere alla dashboard interattiva di Kubernetes
-
-  * opzionale: `run-k8s-get-pods` per visualizzare la lista dei pod disponibili
-
   * `delete-minikube.sh` per eliminare il cluster minikube
 
 Attenzione: nel caso in cui alcuni pods non riescano a rimanere attivi, assicurarsi che la memoria a disposizione di minikube sia sufficiente. 
