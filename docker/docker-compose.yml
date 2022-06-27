@@ -46,7 +46,8 @@ services:
       - "5457:5432"
 
   apigateway:
-    image: tibbo93/apigateway
+    image: apigateway
+    build: ../api-gateway
     container_name: apigateway
     restart: unless-stopped
     ports:
@@ -55,7 +56,8 @@ services:
       - "consul"
 
   enigmi:
-    image: tibbo93/enigmi-service
+    image: enigmi-service
+    build: ../enigmi
     restart: unless-stopped
     deploy:
       mode: replicated
@@ -66,7 +68,8 @@ services:
       - kafka
 
   connessioni:
-    image: tibbo93/connessioni-service
+    image: connessioni-service
+    build: ../connessioni
     restart: unless-stopped
     deploy:
       mode: replicated
@@ -77,7 +80,8 @@ services:
       - kafka
 
   enigmiseguiti:
-    image: tibbo93/enigmi-seguiti-service
+    image: enigmi-seguiti-service
+    build: ../enigmi-seguiti
     restart: unless-stopped
     deploy:
       mode: replicated

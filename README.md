@@ -90,6 +90,8 @@ Per eseguire questo progetto con Docker:
 
 * posizionarsi nella cartella `docker` ed eseguire i seguenti script:
 
+  * `build-java-project.sh` per buildare il progetto
+
   * `run-docker-compose.sh` per eseguire l'applicazione su Docker
   
   * `do-init-enigmi.sh` e `do-init-connessioni.sh`  per inizializzare le basi di dati con dei dati di esempio
