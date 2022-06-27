@@ -88,9 +88,9 @@ Per eseguire questo progetto con Docker:
 
 * avviare Docker
 
-* posizionarsi nella cartella `docker` ed eseguire i seguenti script:
+* `build-java-project.sh` per buildare il progetto
 
-  * `build-java-project.sh` per buildare il progetto
+* posizionarsi nella cartella `docker` ed eseguire i seguenti script:
 
   * `run-docker-compose.sh` per eseguire l'applicazione su Docker
   
